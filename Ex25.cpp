@@ -55,7 +55,7 @@ int compareList(Node *head1, Node *head2){
     int len1=lengthOfList(head1), len2=lengthOfList(head2);
     if (len1!=len2) return 0;
     Node *temp1=head1, *temp2=head2;
-    if(temp1 && temp2){
+    while(temp1 && temp2){
         if(temp1->value!=temp2->value) return 0;
         temp1=temp1->next;
         temp2=temp2->next;
