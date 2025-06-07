@@ -30,11 +30,10 @@ Node *addLast(Node *head, int x){
 }
 
 int lengthOfList(Node *head){
-    int count=1;
-    Node *temp=head;
-    if(head->next==nullptr) return count;
     if(!head) return 0;
-    while(temp->next){
+    int count=0;
+    Node *temp=head;
+    while(temp){
         count++;
         temp=temp->next;
     }
