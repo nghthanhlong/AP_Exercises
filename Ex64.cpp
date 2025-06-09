@@ -1,25 +1,24 @@
 #include<iostream>
-#include<vector>
-
+#include<map>
 using namespace std;
 
 int main(){
-    vector<int> a;
+    map<int, int> mp;
     int x;
     while(cin>>x){
-        a.push_back(x);
+        mp[x]++;
     }
-    int n=a.size();
-    vector<int> freq(n, 0);
-    for(int i=0; i<n;  i++){
-        freq[a[i]]++;
-    }
-    int maxFreq=0, minNum=0;
-    for(int i=0; i<n; i++){
-        if(freq[a[i]]>maxFreq || (freq[a[i]]==maxFreq && a[i]<minNum)){
-            maxFreq=freq[a[i]];
-            minNum=a[i];
+    int maxFreq=0, result;
+    for(auto &m : mp){
+        int number=m.first;
+        int count=m.second;
+        if(count>maxFreq){
+            maxFreq=count;
+            result=number;
+        }
+        else if(count==maxFreq && number<result){
+            result=number;
         }
     }
-    cout<<minNum;
+    cout<<result;
 }
