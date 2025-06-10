@@ -43,29 +43,28 @@ Node *insertionSort(Node *head){
     Node *current =head;
     while(current){
         Node *next=current->next;
-
+        current->next=nullptr;
+        current->prev=nullptr;
+        
         if(!sort || current->getValue() <= sort->getValue()){
             current->next=sort;
             if(sort){
                 sort->prev=current;
             }
             sort=current;
-            sort->prev=nullptr;
         }
-
         else {
             Node *current_sort=sort;
             while(current_sort->next && current_sort->next->getValue() < current->getValue()){
                 current_sort=current_sort->next;
             }
             current->next=current_sort->next;
-            if(!current_sort->next){
-                current->prev=current_sort;
+            if(current_sort->next){
+                current_sort->next->prev=current;
             }
             current_sort->next=current;
             current->prev=current_sort;
         }
-
         current=next;
     }
     return sort;
